@@ -33,7 +33,7 @@ export default {
       this.anfocused = false
     },
     blur() {
-      if (this.mess == '')
+      if (this.mess === '')
         this.focused = false
       else {
         this.focused = false
