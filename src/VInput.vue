@@ -1,7 +1,7 @@
 <template>
   <div class="input">
     <input @focus="focus()" @blur="blur()" v-model="mess" :id="id" type="text" required>
-    <label :for="id" :class="{'focus':focused, 'vlabel':anfocused }">{{ label }}</label>
+    <label :for="id" :class="{'focus':focused, 'vlabel': labelUp }">{{ label }}</label>
   </div>
 </template>
 
@@ -19,23 +19,20 @@ export default {
   data() {
     return {
       focused: false,
-      anfocused: false,
       mess: ''
+    }
+  },
+  computed: {
+    labelUp() {
+      return this.focused || this.mess !== '';
     }
   },
   methods: {
     focus() {
       this.focused = true
-      this.anfocused = false
     },
     blur() {
-      if (this.mess === '')
       this.focused = false
-      else {
-        this.focused = false
-        this.anfocused = true
-      }
-
     }
   }
 }
@@ -66,6 +63,7 @@ label {
   z-index: -1;
   transition: 0.15s;
 }
+
 .vlabel {
   top: -8px;
   left: 10px;
@@ -90,7 +88,7 @@ input {
 
 input:focus {
   outline-style: none;
-  box-shadow:  0 0 0 1px  #1a73e8  ;
+  box-shadow: 0 0 0 1px #1a73e8;
   border: 1px #1a73e8 solid;
 }
 </style>

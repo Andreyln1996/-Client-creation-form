@@ -24,16 +24,21 @@ export default {
 body {
   margin: 0;
   padding: 0;
-
 }
 
 .block {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 8px;
-  border: 1px #dadce0 solid;
+  /*position: absolute;*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  /*transform: translate(-50%, -50%);*/
+  /*border-radius: 8px;*/
+  /*border: 1px #dadce0 solid;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
 }
 
 h3 {

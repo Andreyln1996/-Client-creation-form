@@ -1,24 +1,24 @@
 <template>
   <div class="input">
-
-    <input @focus="focus()" @blur="blur()" v-model="mess" id="day" type="text" required placeholder="LTyn">
-    <input @focus="focus()" @blur="blur()" v-model="mess" id="month" type="text" required>
-    <input @focus="focus()" @blur="blur()" v-model="mess" id="year" type="text" required>
+    <input @focus="focus()" @blur="blur()" v-model="mess" id="day" type="number" required :placeholder="focused ? 'День' : ''">
+    <input @focus="focus()" @blur="blur()" v-model="mess" id="month" type="text" required :placeholder="focused ? 'Месяц' : ''">
+    <input @focus="focus()" @blur="blur()" v-model="mess" id="year" type="number" required :placeholder="focused ? 'Год' : ''">
     <label :for="id" :class="{'focus':focused, 'vlabel':anfocused }">{{ label }}</label>
 
   </div>
 </template>
 
 <script>
-// export default {
-//   name: "VDate",
-//   props: {
-//     label: {
-//       type: String
-//     },
-//     id: {
-//       type: String
-//     },
+export default {
+  name: "VDate",
+  props: {
+    label: {
+      type: String
+    },
+    id: {
+      type: String
+    },
+
   },
   data() {
     return {
