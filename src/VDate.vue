@@ -10,15 +10,15 @@
 </template>
 
 <script>
-export default {
-  name: "VDate",
-  props: {
-    label: {
-      type: String
-    },
-    id: {
-      type: String
-    },
+// export default {
+//   name: "VDate",
+//   props: {
+//     label: {
+//       type: String
+//     },
+//     id: {
+//       type: String
+//     },
   },
   data() {
     return {
