@@ -1,7 +1,9 @@
-body {
-    background: red;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-div {
-    box-sizing: border-box;
-}
+/*div {*/
+/*    box-sizing: border-box;*/
+/*}*/

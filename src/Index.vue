@@ -1,51 +1,48 @@
 <template>
-  <div class="block">
-    <h3>Cоздание клиента</h3>
-    <form>
-      <VInput id="lastname" label="Фамилия"></VInput>
-      <VInput id="firstname" label="Имя"></VInput>
-      <VInput id="secondname" label="Отчество"></VInput>
-      <VDate id="birthday" label="Дата рождения"></VDate>
-    </form>
+  <div class="index">
+    <div class="index__login-form">
+      <h3 class="index__title">Cоздание клиента</h3>
+      <form class="index__form">
+        <DataInput id="lastname" label="Фамилия"></DataInput>
+        <DataInput id="firstname" label="Имя"></DataInput>
+        <DataInput id="patronymic" label="Отчество"></DataInput>
+        <VDate id="birthday" label="Дата рождения"></VDate>
+        <input type="submit">
+
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
-import VInput from "@/VInput";
+import DataInput from "@/DataInput";
 import VDate from "@/VDate";
+
 export default {
   name: "Index",
-  components:{VInput, VDate}
+  components: {DataInput, VDate}
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 
-body {
-  margin: 0;
-  padding: 0;
-}
-
-.block {
-  /*position: absolute;*/
-  /*top: 50%;*/
-  /*left: 50%;*/
-  /*transform: translate(-50%, -50%);*/
-  /*border-radius: 8px;*/
-  /*border: 1px #dadce0 solid;*/
+.index {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 100vh;
+  height: 100%;
 
-}
+  &__login-form {
+    border-radius: 8px;
+    border: 1px #dadce0 solid;
+  }
 
-h3 {
-  text-align: center;
-}
+  &__title {
+    text-align: center;
+  }
 
-form {
-  padding: 0 50px;
+  &__form {
+    padding: 0 50px;
+  }
 }
 </style>

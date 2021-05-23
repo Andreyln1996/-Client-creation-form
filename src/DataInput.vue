@@ -1,18 +1,18 @@
 <template>
-  <div class="date-input">
+  <div class="entry-field">
     <input
         v-model="text"
         :id="id"
-        class="date-input__input"
-        type="date"
+        class="entry-field__input"
+        type="text"
         @focus="focus()"
         @blur="blur()">
     <label
         :for="id"
         :class="{
-          'date-input__label_position_up': notEmpty,
-          'date-input__label_color_blue': focused }"
-        class="date-input__label">
+          'entry-field__label_position_up': notEmpty,
+          'entry-field__label_color_blue': focused }"
+        class="entry-field__label">
       {{ label }}
     </label>
   </div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "VDate",
+  name: "entry-field",
   props: {
     label: {
       type: String
@@ -53,7 +53,7 @@ export default {
 
 <style lang="scss">
 
-.date-input {
+.entry-field {
   margin: 0 0 20px;
   position: relative;
 
@@ -63,6 +63,7 @@ export default {
     border: 1px #dadce0 solid;
     font-size: 16px;
     width: 250px;
+    background: transparent;
   }
 
   &__input:focus {
