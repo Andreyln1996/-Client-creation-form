@@ -2,25 +2,40 @@
   <div class="index">
     <div class="index__login-form">
       <h3 class="index__title">Cоздание клиента</h3>
-      <form class="index__form">
-        <DataInput id="lastname" label="Фамилия"></DataInput>
+      <form class="index__form" autocomplete="off">
+        <DataInput id="lastname"
+                   label="Фамилия"></DataInput>
         <DataInput id="firstname" label="Имя"></DataInput>
-        <DataInput id="patronymic" label="Отчество"></DataInput>
+        <DataInput id="patronymic"
+                   label="Отчество"></DataInput>
         <VDate id="birthday" label="Дата рождения"></VDate>
+        <PhoneInput id="phone"
+                    label="Номер телефона"></PhoneInput>
+        <GenderSelection id="gender"
+                         label="Пол"></GenderSelection>
+        <GenderSelection></GenderSelection>
+        <GenderSelection></GenderSelection>
         <input type="submit">
-
       </form>
     </div>
   </div>
+
 </template>
 
 <script>
 import DataInput from "@/DataInput";
 import VDate from "@/VDate";
+import PhoneInput from "@/PhoneInput";
+import GenderSelection from "@/GenderSelection";
 
 export default {
   name: "Index",
-  components: {DataInput, VDate}
+  components: {
+    DataInput,
+    VDate,
+    PhoneInput,
+    GenderSelection
+  }
 }
 </script>
 
@@ -35,6 +50,7 @@ export default {
   &__login-form {
     border-radius: 8px;
     border: 1px #dadce0 solid;
+    padding: 0 50px;
   }
 
   &__title {
@@ -42,7 +58,8 @@ export default {
   }
 
   &__form {
-    padding: 0 50px;
+    width: 250px;
   }
 }
+
 </style>

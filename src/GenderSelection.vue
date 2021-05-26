@@ -1,19 +1,19 @@
 <template>
-  <div class="entry-field">
-    <input
+  <div class="gender-selection">
+    <select
         v-model="text"
         :id="id"
-        class="entry-field__input"
-        type="text"
+        class="gender-selection__input"
+        :placeholder="focused ? '+7 (999) 999-99-99' : ''"
         @focus="focus()"
-        @blur="blur()"
-        value="dvd">
+        @blur="blur()">
+    </select>
     <label
         :for="id"
         :class="{
-          'entry-field__label_position_up': notEmpty,
-          'entry-field__label_color_blue': focused }"
-        class="entry-field__label">
+          'gender-selection__label_position_up': notEmpty,
+          'gender-selection__label_color_blue': focused }"
+        class="gender-selection__label">
       {{ label }}
     </label>
   </div>
@@ -21,40 +21,40 @@
 
 <script>
 export default {
-  name: "DataInput",
+  name: "GenderSelection",
   props: {
-    label: {
-      type: String
-    },
-    id: {
-      type: String
-    },
+  label: {
+    type: String
   },
-  data() {
-    return {
-      focused: false,
-      text: ''
-    }
+  id: {
+    type: String
   },
-  computed: {
-    notEmpty() {
-      return this.text !== '' || this.focused
-    }
-  },
-  methods: {
-    focus() {
-      return this.focused = true
-    },
-    blur() {
-      return this.focused = false
-    }
+},
+data() {
+  return {
+    focused: false,
+    text: ''
   }
+},
+computed: {
+  notEmpty() {
+    return this.text !== '' || this.focused
+  }
+},
+methods: {
+  focus() {
+    return this.focused = true
+  },
+  blur() {
+    return this.focused = false
+  }
+}
 }
 </script>
 
 <style lang="scss">
 
-.entry-field {
+.gender-selection {
   margin: 0 0 20px;
   position: relative;
   height: 40px;

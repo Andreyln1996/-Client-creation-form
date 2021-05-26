@@ -1,12 +1,14 @@
 <template>
   <div class="date-input">
     <input
+        v-mask="'##.##.####'"
         v-model="text"
         :id="id"
         class="date-input__input"
-        type="date"
+        type="text"
         @focus="focus()"
-        @blur="blur()">
+        @blur="blur()"
+        :placeholder="focused ? 'дд.мм.гггг' : '' ">
     <label
         :for="id"
         :class="{
@@ -56,33 +58,36 @@ export default {
 .date-input {
   margin: 0 0 20px;
   position: relative;
+  height: 40px;
+  font-size: 14px;
+  transition: 0.2s;
 
   &__input {
     border-radius: 20px;
-    padding: 10px;
+    height: 100%;
+    padding: 0 13px;
     border: 1px #dadce0 solid;
-    font-size: 16px;
-    width: 250px;
+    width: 100%;
   }
 
   &__input:focus {
-    outline-style: none;
-    box-shadow: 0 0 0 1px #1a73e8;
+    box-shadow: 0 0 1px 0 #1a73e8;
     border: 1px #1a73e8 solid;
+    transition: inherit;
   }
 
   &__label {
     position: absolute;
-    top: 11px;
-    left: 11px;
-    font-family: sans-serif;
+    top: 12px;
+    left: 14px;
     color: #7d7d7d;
     pointer-events: none;
-    transition: 0.15s;
+    transition: inherit;
 
     &_position_up {
-      background: #ffff;
-      padding: 0 2px;
+      background: #fff;
+      border-radius: 2px;
+      padding: 0 4px 0 3px;
       top: -8px;
       left: 10px;
       font-size: 10px;
@@ -93,6 +98,4 @@ export default {
     }
   }
 }
-
-
 </style>

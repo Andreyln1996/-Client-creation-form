@@ -1,18 +1,19 @@
 <template>
-  <div class="entry-field">
+  <div class="phone-input">
     <input
+        v-mask="'+7 (###) ###-##-##'"
         v-model="text"
         :id="id"
-        class="entry-field__input"
-        type="text"
+        class="phone-input__input"
+        type="tel"
+        :placeholder="focused ? '+7 (999) 999-99-99' : ''"
         @focus="focus()"
-        @blur="blur()"
-        value="dvd">
+        @blur="blur()">
     <label
         :for="id"
         :class="{
-          'entry-field__label_position_up': notEmpty,
-          'entry-field__label_color_blue': focused }"
+          'phone-input__label_position_up': notEmpty,
+          'phone-input__label_color_blue': focused }"
         class="entry-field__label">
       {{ label }}
     </label>
@@ -20,8 +21,9 @@
 </template>
 
 <script>
+
 export default {
-  name: "DataInput",
+  name: "PhoneInput",
   props: {
     label: {
       type: String
@@ -54,7 +56,7 @@ export default {
 
 <style lang="scss">
 
-.entry-field {
+.phone-input {
   margin: 0 0 20px;
   position: relative;
   height: 40px;
