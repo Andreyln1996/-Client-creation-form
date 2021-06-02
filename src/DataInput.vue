@@ -1,46 +1,44 @@
 <template>
-  <div class="entry-field">
+  <InputWrapper
+      :id="id"
+      :label="label"
+      :notEmpty="notEmpty"
+      :focused="focused">
+
     <input
         v-model="text"
-        :id="id"
-        class="entry-field__input"
+        class="data-input"
         type="text"
         @focus="focus()"
-        @blur="blur()"
-        value="dvd">
-    <label
-        :for="id"
-        :class="{
-          'entry-field__label_position_up': notEmpty,
-          'entry-field__label_color_blue': focused }"
-        class="entry-field__label">
-      {{ label }}
-    </label>
-  </div>
+        @blur="blur()">
+  </InputWrapper>
 </template>
 
 <script>
+import InputWrapper from "@/InputWrapper";
+
 export default {
   name: "DataInput",
+  components: {InputWrapper},
+
   props: {
-    label: {
-      type: String
-    },
-    id: {
-      type: String
-    },
+    label: String,
+    id: String
   },
+
   data() {
     return {
       focused: false,
       text: ''
     }
   },
+
   computed: {
     notEmpty() {
       return this.text !== '' || this.focused
     }
   },
+
   methods: {
     focus() {
       return this.focused = true
@@ -54,47 +52,12 @@ export default {
 
 <style lang="scss">
 
-.entry-field {
-  margin: 0 0 20px;
-  position: relative;
-  height: 40px;
-  font-size: 14px;
-  transition: 0.2s;
-
-  &__input {
-    border-radius: 20px;
-    height: 100%;
-    padding: 0 13px;
-    border: 1px #dadce0 solid;
-    width: 100%;
-  }
-
-  &__input:focus {
-    box-shadow: 0 0 1px 0 #1a73e8;
-    border: 1px #1a73e8 solid;
-    transition: inherit;
-  }
-
-  &__label {
-    position: absolute;
-    top: 12px;
-    left: 14px;
-    color: #7d7d7d;
-    pointer-events: none;
-    transition: inherit;
-
-    &_position_up {
-      background: #fff;
-      border-radius: 2px;
-      padding: 0 4px 0 3px;
-      top: -8px;
-      left: 10px;
-      font-size: 10px;
-    }
-
-    &_color_blue {
-      color: #1a73e8;
-    }
-  }
+.data-input {
+  border-radius: inherit;
+  height: 100%;
+  padding: 0 13px;
+  border-style: none;
+  width: 100%;
+  background: transparent;
 }
 </style>

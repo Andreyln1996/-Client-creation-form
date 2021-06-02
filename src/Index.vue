@@ -11,11 +11,7 @@
         <VDate id="birthday" label="Дата рождения"></VDate>
         <PhoneInput id="phone"
                     label="Номер телефона"></PhoneInput>
-        <GenderSelection id="gender"
-                         label="Пол"></GenderSelection>
         <GenderSelection></GenderSelection>
-        <GenderSelection></GenderSelection>
-        <input type="submit">
       </form>
     </div>
   </div>
@@ -48,9 +44,10 @@ export default {
   height: 100%;
 
   &__login-form {
-    border-radius: 8px;
+    border-radius: 20px;
     border: 1px #dadce0 solid;
-    padding: 0 50px;
+    padding: 0 25px;
+    font-size: 14px;
   }
 
   &__title {
