@@ -34,6 +34,7 @@ export default {
 <style lang="scss">
 
 .input-wrapper {
+  width: 250px;
   height: 40px;
   margin: 0 0 20px;
   border-radius: 20px;
@@ -51,6 +52,7 @@ export default {
     top: 12px;
     left: 14px;
     color: #7d7d7d;
+    user-select: none;
     pointer-events: none;
     transition: inherit;
 

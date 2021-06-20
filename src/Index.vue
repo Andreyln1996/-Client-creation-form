@@ -12,6 +12,11 @@
         <PhoneInput id="phone"
                     label="Номер телефона"></PhoneInput>
         <GenderSelection></GenderSelection>
+        <CustomSelect id="doctor"
+                      label="Лечащий врач"></CustomSelect>
+        <doctor-input></doctor-input>
+        <input type="radio" checked>
+
       </form>
     </div>
   </div>
@@ -23,10 +28,14 @@ import DataInput from "@/DataInput";
 import VDate from "@/VDate";
 import PhoneInput from "@/PhoneInput";
 import GenderSelection from "@/GenderSelection";
+import CustomSelect from "@/CustomSelect";
+import DoctorInput from "@/DoctorInput";
 
 export default {
   name: "Index",
   components: {
+    DoctorInput,
+    CustomSelect,
     DataInput,
     VDate,
     PhoneInput,

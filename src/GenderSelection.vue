@@ -3,8 +3,6 @@
       :id="gender"
       :focused="focused"
       :notEmpty=true
-      :class="{
-        'gender-selection_background_grey': selectGender}"
       class="gender-selection"
       label="Пол">
 
@@ -23,9 +21,6 @@
           gender-selection__block_border-male"
         :class="{
           'gender-selection__block_color-text_black': selectMale}"
-        tabindex="0"
-        @focus="focus"
-        @blur="blur"
         @mouseover="focus"
         @mouseleave="blur">
 
@@ -71,7 +66,7 @@ export default {
   data() {
     return {
       focused: false,
-      gender: ''
+      gender: 'male'
     }
   },
 
@@ -81,9 +76,6 @@ export default {
     },
     selectMale() {
       return this.gender === 'male'
-    },
-    selectGender() {
-      return this.selectFemale || this.selectMale
     }
   },
 
@@ -103,17 +95,10 @@ export default {
 
 .gender-selection {
   display: flex;
-
-  &_background_grey {
-    background: #dadce0;
-  }
+  background: #dadce0;
 
   &__slider {
     position: absolute;
-    top: 1px;
-    left: 1px;
-    bottom: 1px;
-    right: 1px;
     border-radius: inherit;
     transition: inherit;
     background: #ffffff;
@@ -169,5 +154,4 @@ export default {
     position: absolute;
   }
 }
-
 </style>
