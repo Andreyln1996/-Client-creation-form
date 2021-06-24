@@ -12,10 +12,11 @@
         <PhoneInput id="phone"
                     label="Номер телефона"></PhoneInput>
         <GenderSelection></GenderSelection>
+        <client-group id="client"
+                      label="Группа клиентов"></client-group>
         <CustomSelect id="doctor"
                       label="Лечащий врач"></CustomSelect>
-        <doctor-input></doctor-input>
-        <input type="radio" checked>
+        <input type="checkbox" checked>
 
       </form>
     </div>
@@ -29,12 +30,12 @@ import VDate from "@/VDate";
 import PhoneInput from "@/PhoneInput";
 import GenderSelection from "@/GenderSelection";
 import CustomSelect from "@/CustomSelect";
-import DoctorInput from "@/DoctorInput";
+import ClientGroup from "@/ClientGroup";
 
 export default {
   name: "Index",
   components: {
-    DoctorInput,
+    ClientGroup,
     CustomSelect,
     DataInput,
     VDate,

@@ -24,11 +24,8 @@ select:focus {
 
 * {
 box-sizing: border-box;
-
-}
-
-label {
 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
 }
 
 select {

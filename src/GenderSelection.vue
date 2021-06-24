@@ -151,7 +151,6 @@ export default {
 
   &__input {
     display: none;
-    position: absolute;
   }
 }
 </style>

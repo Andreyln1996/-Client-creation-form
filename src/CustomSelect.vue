@@ -9,14 +9,14 @@
           'input-wrapper_focused': hovered}"
         class="input-wrapper custom-select__select "
         tabindex="0"
-        @mouseenter="hovered = !hovered"
+        @mouseenter="hover"
         @mouseleave="hovered = !hovered"
         @blur="blur">
 
       <div
           class="custom-select__arrow"
           :class="{
-            'custom-select__arrow_rotate': !focused,
+            'custom-select__arrow_rotate': focused,
             'custom-select__arrow_color-blue': hovered}"
           @click="focused = !focused">
       </div>
@@ -34,8 +34,7 @@
             value="Ivanov"
             v-model="doctor"
             class="custom-select__radio"
-            @click="focused = !focused"
-            @blur="blur">
+            @click="focused = !focused">
         Иванов
       </label>
 
@@ -123,6 +122,10 @@ export default {
     blur() {
       return this.focused = false
     },
+
+    hover() {
+      return this.hovered = !this.hovered
+    }
   }
 }
 
@@ -132,15 +135,15 @@ export default {
 
 .custom-select {
   margin: 0 0 20px;
-  position: relative;
   height: 40px;
+  position: relative;
   z-index: 1;
+
 
   &__select {
     overflow: hidden;
     background: #dadce0;
     outline-style: none;
-    cursor: pointer;
     height: auto;
   }
 
@@ -153,11 +156,12 @@ export default {
     border: solid 1px black;
     border-top: transparent;
     border-right: transparent;
-    transform: rotate(135deg);
+    transform: rotate(315deg);
     transition: inherit;
+    cursor: pointer;
 
     &_rotate {
-      transform: rotate(315deg);
+      transform: rotate(135deg);
     }
 
     &_color-blue {
@@ -194,7 +198,6 @@ export default {
 
   &__radio {
     display: none;
-    position: absolute;
   }
 }
 </style>
