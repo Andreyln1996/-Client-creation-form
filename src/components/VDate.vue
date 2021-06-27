@@ -6,21 +6,21 @@
       :focused="focused">
 
     <input
-        v-mask="'+7 (###) ###-##-##'"
+        v-mask="'##.##.####'"
         v-model="text"
-        class="phone-input"
-        type="tel"
-        :placeholder="focused ? '+7 (999) 999-99-99' : ''"
+        class="date-input"
+        type="text"
+        :placeholder="focused ? 'дд.мм.гггг' : '' "
         @focus="focus()"
         @blur="blur()">
   </InputWrapper>
 </template>
 
 <script>
-import InputWrapper from "@/InputWrapper";
+import InputWrapper from "@/components/InputWrapper";
 
 export default {
-  name: "PhoneInput",
+  name: "VDate",
   components: {InputWrapper},
 
   props: {
@@ -55,12 +55,12 @@ export default {
 
 <style lang="scss">
 
-.phone-input {
+.date-input {
   border-radius: inherit;
   height: 100%;
   padding: 0 13px;
-  border-style: none;
-  width: 100%;
   background: transparent;
+  width: 100%;
+  border-style: none;
 }
 </style>

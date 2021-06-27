@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import InputWrapper from "@/InputWrapper";
+import InputWrapper from "@/components/InputWrapper";
 
 export default {
   name: "GenderSelection",

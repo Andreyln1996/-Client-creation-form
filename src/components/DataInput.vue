@@ -3,10 +3,11 @@
       :id="id"
       :label="label"
       :notEmpty="notEmpty"
-      :focused="focused">
+      :focused="focused"
+      :error="error">
 
     <input
-        v-model="text"
+        v-model.trim="$v.text.$model"
         class="data-input"
         type="text"
         @focus="focus()"
@@ -15,7 +16,8 @@
 </template>
 
 <script>
-import InputWrapper from "@/InputWrapper";
+import InputWrapper from "@/components/InputWrapper";
+import { required, minLength} from 'vuelidate/lib/validators'
 
 export default {
   name: "DataInput",
@@ -33,16 +35,29 @@ export default {
     }
   },
 
+  validations: {
+    text: {
+      required,
+      minLength: minLength(2)
+    }
+  },
+
   computed: {
     notEmpty() {
       return this.text !== '' || this.focused
+    },
+
+    error() {
+      return this.$v.text.$dirty && !this.$v.text.required
     }
   },
 
   methods: {
+
     focus() {
       return this.focused = true
     },
+
     blur() {
       return this.focused = false
     }

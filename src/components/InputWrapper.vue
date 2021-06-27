@@ -1,6 +1,8 @@
 <template>
   <div
-      :class="{'input-wrapper_focused': focused}"
+      :class="{
+        'input-wrapper_focused': focused && !error,
+        'input-wrapper_error': error}"
       :id="id"
       class="input-wrapper">
 
@@ -9,8 +11,12 @@
     <label
         :for="id"
         :class="{
-          'input-wrapper__label_position_up': notEmpty,
-          'input-wrapper__label_color_blue': focused }"
+          'input-wrapper__label_position_up'
+          : notEmpty,
+          'input-wrapper__label_color-blue'
+          : focused && !error,
+          'input-wrapper__label_color-red'
+          : error}"
         class="input-wrapper__label">
       {{ label }}
     </label>
@@ -26,7 +32,8 @@ export default {
     label: String,
     id: String,
     notEmpty: Boolean,
-    focused: Boolean
+    focused: Boolean,
+    error: Boolean
   }
 }
 </script>
@@ -44,7 +51,12 @@ export default {
 
   &_focused {
     box-shadow: 0 0 1px 0 #1a73e8;
-    border: 1px #1a73e8 solid;
+    border-color: #1a73e8;
+  }
+
+  &_error {
+    border-color: red;
+    box-shadow: 0 0 1px 0 red;
   }
 
   &__label {
@@ -65,8 +77,12 @@ export default {
       font-size: 10px;
     }
 
-    &_color_blue {
+    &_color-blue {
       color: #1a73e8;
+    }
+
+    &_color-red {
+      color: red;
     }
   }
 }

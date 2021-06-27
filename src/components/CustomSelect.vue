@@ -24,60 +24,61 @@
       <label
           :class="{
             'custom-select__option_focused'
-            : selectIvanov || focused,
-            'custom-select__option_select': selectIvanov}"
+            : selectedOptionsOne || focused,
+            'custom-select__option_select'
+            : selectedOptionsOne}"
           class="custom-select__option">
 
         <input
             type="radio"
             name="doctor"
-            value="Ivanov"
-            v-model="doctor"
+            value="one"
+            v-model="value"
             class="custom-select__radio"
             @click="focused = !focused">
-        Иванов
+        {{option[0]}}
       </label>
 
       <label
           :class="{
             'custom-select__option_focused'
-            :selectZakharov || focused,
+            :selectedOptionsTwo || focused,
             'custom-select__option_select'
-            : selectZakharov}"
+            : selectedOptionsTwo}"
           class="custom-select__option">
 
         <input
             type="radio"
             name="doctor"
-            value="Zakharov"
-            v-model="doctor"
+            value="two"
+            v-model="value"
             class="custom-select__radio"
             @click="focused = !focused">
-        Захаров
+        {{option[1]}}
       </label>
 
       <label
           :class="{
             'custom-select__option_focused'
-            :selectChernysheva || focused,
+            :selectedOptionsThree || focused,
             'custom-select__option_select'
-            : selectChernysheva}"
+            : selectedOptionsThree}"
           class="custom-select__option">
 
         <input
             type="radio"
             name="doctor"
-            value="Chernysheva"
-            v-model="doctor"
+            value="three"
+            v-model="value"
             class="custom-select__radio"
             @click="focused = !focused">
-        Чернышева
+        {{option[2]}}
       </label>
     </div>
 
     <label
         :for="id"
-        :class="{'input-wrapper__label_color_blue': hovered }"
+        :class="{'input-wrapper__label_color-blue': hovered }"
         class="
           input-wrapper__label
           input-wrapper__label_position_up">
@@ -91,26 +92,27 @@ export default {
   name: "CustomSelect",
   props: {
     label: String,
-    id: String
+    id: String,
+    option: Array
   },
 
   data() {
     return {
       focused: false,
       hovered: false,
-      doctor: 'Ivanov',
+      value: 'one',
     }
   },
 
   computed: {
-    selectChernysheva() {
-      return this.doctor === 'Chernysheva'
+    selectedOptionsOne() {
+      return this.value === 'one'
     },
-    selectZakharov() {
-      return this.doctor === 'Zakharov'
+    selectedOptionsTwo() {
+      return this.value === 'two'
     },
-    selectIvanov() {
-      return this.doctor === 'Ivanov'
+    selectedOptionsThree() {
+      return this.value === 'three'
     }
   },
 
@@ -145,6 +147,7 @@ export default {
     background: #dadce0;
     outline-style: none;
     height: auto;
+    max-height: 120px;
   }
 
   &__arrow {

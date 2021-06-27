@@ -14,7 +14,6 @@
         @blur="focused = false">
 
       <div
-          :class="{'client-group__selected_focused': focused}"
           class="client-group__selected"
           @click="focused = !focused">
 
@@ -50,7 +49,7 @@
 
     <label
         :for="id"
-        :class="{'input-wrapper__label_color_blue': hovered }"
+        :class="{'input-wrapper__label_color-blue': hovered}"
         class="
           input-wrapper__label
           input-wrapper__label_position_up">
@@ -101,7 +100,7 @@ export default {
   &__wrapper {
     height: auto;
     overflow: hidden;
-    background-color: #ffffff;
+    background-color: #dadce0;
     outline-style: none;
   }
 
@@ -112,10 +111,6 @@ export default {
     align-items: center;
     justify-content: center;
     border: solid 1px transparent;
-
-    &_focused {
-      border-bottom-color: #dadce0;
-    }
   }
 
   &__label {
@@ -146,7 +141,7 @@ export default {
     padding: 1px 4px;
     margin-right: 4px;
     user-select: none;
-    background-color: #dadce0;
+    background-color: #ffffff;
     border-radius: 8px;
   }
 
