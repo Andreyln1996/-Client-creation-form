@@ -1,6 +1,12 @@
 <template>
-  <form class="client-document">
-    <h3 class="client-document__title">Документ Клиента</h3>
+
+  <form
+      class="client-document"
+      v-on:keyup.enter="touch()">
+
+    <h3 class="client-document__title">
+      Документ Клиента
+    </h3>
 
     <custom-select
         id="documentType"
@@ -10,10 +16,21 @@
           'Свидетельство о рождении',
           'Вод. удостоверение']"/>
 
-    <data-input id="series" label="Серия"/>
-    <data-input id="number" label="Номер"/>
-    <data-input id="issuedBy" label="Кем выдан"/>
-    <v-date id="dataIssued" label="Дата выдачи"/>
+    <data-input
+        id="series" label="Серия"/>
+
+    <index-input
+        id="number"
+        label="Номер"/>
+
+    <data-input
+        id="issuedBy"
+        label="Кем выдан"/>
+
+    <date-input
+        ref="data-input"
+        id="dataIssued"
+        label="Дата выдачи*"/>
 
     <div class="client-document__footer">
 
@@ -25,28 +42,46 @@
       </button>
 
       <button
+          type="button"
           class="client-document__btn
-              client-document__btn_next">
+              client-document__btn_next"
+          @click="touch()">
         Готово
       </button>
+
     </div>
   </form>
 </template>
 
 <script>
 import DataInput from "@/components/DataInput";
-import VDate from "@/components/VDate";
 import CustomSelect from "@/components/CustomSelect";
+import IndexInput from "@/page-2/components/IndexInput";
+import DateInput from "@/components/DateInput";
+
 export default {
   name: "ClientDocument",
-  components: {CustomSelect, VDate, DataInput}
+  components: {
+    DateInput,
+    IndexInput,
+    CustomSelect,
+    DataInput
+  },
+  methods: {
+
+    touch() {
+      this.$refs["data-input"].$v.$touch()
+      if (this.$refs["data-input"].$v.$error === false)
+        this.$router.push('message')
+    }
+  }
 }
 </script>
 
 <style lang="scss">
 
 .client-document {
-  width: 250px;
+ min-width: 250px;
 
   &__title {
     text-align: center;

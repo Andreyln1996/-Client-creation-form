@@ -3,11 +3,10 @@
       :id="id"
       :label="label"
       :notEmpty="notEmpty"
-      :focused="focused"
-      :error="error">
+      :focused="focused">
 
     <input
-        v-model.trim="$v.text.$model"
+        v-model.trim="text"
         class="data-input"
         type="text"
         @focus="focus()"
@@ -17,7 +16,6 @@
 
 <script>
 import InputWrapper from "@/components/InputWrapper";
-import { required, minLength} from 'vuelidate/lib/validators'
 
 export default {
   name: "DataInput",
@@ -35,21 +33,11 @@ export default {
     }
   },
 
-  validations: {
-    text: {
-      required,
-      minLength: minLength(2)
-    }
-  },
-
   computed: {
     notEmpty() {
       return this.text !== '' || this.focused
     },
 
-    error() {
-      return this.$v.text.$dirty && !this.$v.text.required
-    }
   },
 
   methods: {
@@ -67,12 +55,4 @@ export default {
 
 <style lang="scss">
 
-.data-input {
-  border-radius: inherit;
-  height: 100%;
-  padding: 0 13px;
-  border-style: none;
-  width: 100%;
-  background: transparent;
-}
 </style>

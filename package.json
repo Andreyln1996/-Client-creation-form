@@ -14,7 +14,9 @@
     "normalize.css": "^8.0.1",
     "v-mask": "^2.2.4",
     "vue": "^2.6.11",
+    "vue-inputmask": "^0.2.1",
     "vue-router": "^3.5.2",
+    "vue-the-mask": "^0.11.1",
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {

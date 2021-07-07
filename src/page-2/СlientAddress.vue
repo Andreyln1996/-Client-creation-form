@@ -1,16 +1,42 @@
 <template>
-    <form class="client-address">
-      <h3 class="client-address__title">Адрес Клиента</h3>
-      <data-input id="index" label="Индекс"></data-input>
-      <data-input id="country" label="Страна"></data-input>
-      <data-input id="region" label="Область"></data-input>
-      <data-input id="city" label="Город"></data-input>
-      <data-input id="street" label="Улица"></data-input>
-      <data-input id="home" label="Дом"></data-input>
+
+    <form
+        class="client-address"
+        v-on:keyup.enter="touch()">
+
+      <h3 class="client-address__title">
+        Адрес Клиента
+      </h3>
+
+      <index-input
+          id="index"
+          label="Индекс"/>
+
+      <address-input
+          id="country"
+          label="Страна"/>
+
+      <address-input
+          id="region"
+          label="Область"/>
+
+      <city-input
+          ref="city-input"
+          id="city"
+          label="Город*"/>
+
+      <address-input
+          id="street"
+          label="Улица"/>
+
+      <data-input
+          id="home"
+          label="Дом"/>
 
       <div class="client-address__footer">
 
         <button
+            type="button"
             class="client-address__btn
                 client-address__btn_back"
             @click="$router.push('/')">
@@ -18,9 +44,10 @@
         </button>
 
         <button
+            type="button"
             class="client-address__btn
               client-address__btn_next"
-            @click="$router.push('document')">
+            @click="touch()">
           Далее
         </button>
       </div>
@@ -29,10 +56,27 @@
 
 <script>
 import DataInput from "@/components/DataInput";
+import IndexInput from "@/page-2/components/IndexInput";
+import AddressInput from "@/page-2/components/AddressInput";
+import CityInput from "@/page-2/components/CityInput";
 
 export default {
   name: "ClientAddress",
-  components: {DataInput}
+  components: {
+    CityInput,
+    AddressInput,
+    IndexInput,
+    DataInput
+  },
+
+  methods: {
+
+    touch() {
+      this.$refs["city-input"].$v.$touch()
+      if (this.$refs["city-input"].$v.$error === false)
+        this.$router.push('document')
+    }
+  }
 }
 </script>
 
@@ -60,6 +104,8 @@ export default {
     border-style: none;
     height: 30px;
     width: 75px;
+    outline-style: none;
+
 
     &_back {
       color: #1a73e8;

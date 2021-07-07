@@ -33,7 +33,7 @@ export default {
     id: String,
     notEmpty: Boolean,
     focused: Boolean,
-    error: Boolean
+    error: Boolean,
   }
 }
 </script>
@@ -41,7 +41,7 @@ export default {
 <style lang="scss">
 
 .input-wrapper {
-  width: 250px;
+  width: 450px;
   height: 40px;
   margin: 0 0 20px;
   border-radius: 20px;
@@ -61,17 +61,17 @@ export default {
 
   &__label {
     position: absolute;
-    top: 12px;
+    top: 11px;
     left: 14px;
+    padding: 1px 3px 0 3px;
     color: #7d7d7d;
+    background: #ffffff;
     user-select: none;
     pointer-events: none;
-    transition: inherit;
+    transition: 0.2s;
 
     &_position_up {
-      background: #fff;
       border-radius: 2px;
-      padding: 0 3px;
       top: -9px;
       left: 10px;
       font-size: 10px;

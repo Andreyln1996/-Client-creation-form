@@ -1,4 +1,5 @@
 <template>
+
   <InputWrapper
       :id="id"
       :label="label"
@@ -7,32 +8,34 @@
       :error="$v.text.$error">
 
     <input
-        v-model.trim="$v.text.$model"
-        class="name-input"
+        v-model.trim="text"
+        class="data-input"
         type="text"
-        @focus="focus()"
-        @blur="blur()">
+        @focus="focus(); $v.text.$reset()"
+        @blur="blur(); $v.text.$touch()">
 
     <span
         class="error"
-        v-if="!$v.text.required && $v.text.$dirty">
-      Обязательно для заполнения
+        v-if="!$v.text.alpha && $v.text.$dirty">
+      Некорректное название
     </span>
 
     <span
         class="error"
-        v-if="!$v.text.minLength && $v.text.$dirty">
-      Фамилия должна состоять не менее {{$v.text.$params.minLength.min}} символов
+        v-else-if="!$v.text.minLength && $v.text.$dirty">
+       Название должно содержать не менее
+      {{$v.text.$params.minLength.min}} букв
     </span>
+
   </InputWrapper>
 </template>
 
 <script>
 import InputWrapper from "@/components/InputWrapper";
-import { required, minLength } from 'vuelidate/lib/validators'
+import {minLength} from 'vuelidate/lib/validators'
 
 export default {
-  name: "NameInput",
+  name: "AddressInput",
   components: {InputWrapper},
 
   props: {
@@ -43,21 +46,21 @@ export default {
   data() {
     return {
       focused: false,
-      text: ''
+      text: '',
     }
   },
 
   validations: {
     text: {
-      required,
       minLength: minLength(2),
+      alpha: val => /^[а-яёa-zA-Z-]*$/i.test(val)
     }
   },
 
   computed: {
     notEmpty() {
       return this.text !== '' || this.focused
-    },
+    }
   },
 
   methods: {
@@ -72,23 +75,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-.name-input {
-  border-radius: inherit;
-  height: 100%;
-  padding: 0 13px;
-  border-style: none;
-  width: 100%;
-  background: transparent;
-}
-
-.error {
-  position: relative;
-  bottom: 2px;
-  font-size: 8.5px;
-  color: red;
-
-}
-</style>

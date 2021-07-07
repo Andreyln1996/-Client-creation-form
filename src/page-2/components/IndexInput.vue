@@ -1,4 +1,5 @@
 <template>
+
   <InputWrapper
       :id="id"
       :label="label"
@@ -6,11 +7,12 @@
       :focused="focused">
 
     <input
-        v-mask="'+7 (###) ###-##-##'"
-        v-model="text"
-        class="phone-input"
-        type="tel"
-        :placeholder="focused ? '+7 (999) 999-99-99' : ''"
+        v-model.trim="text"
+        class="data-input"
+        type="number"
+        maxlength="6"
+        oninput="if (this.value.length > this.maxLength)
+          this.value = this.value.slice(0, this.maxLength);"
         @focus="focus()"
         @blur="blur()">
   </InputWrapper>
@@ -20,7 +22,7 @@
 import InputWrapper from "@/components/InputWrapper";
 
 export default {
-  name: "PhoneInput",
+  name: "IndexInput",
   components: {InputWrapper},
 
   props: {
@@ -31,36 +33,29 @@ export default {
   data() {
     return {
       focused: false,
-      text: ''
+      text: '',
     }
   },
 
   computed: {
+
     notEmpty() {
       return this.text !== '' || this.focused
-    }
+    },
+
+
   },
 
   methods: {
+
     focus() {
       return this.focused = true
     },
 
     blur() {
       return this.focused = false
-    }
+    },
+
   }
 }
 </script>
-
-<style lang="scss">
-
-.phone-input {
-  border-radius: inherit;
-  height: 100%;
-  padding: 0 13px;
-  border-style: none;
-  width: 100%;
-  background: transparent;
-}
-</style>

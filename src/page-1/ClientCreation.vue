@@ -1,17 +1,42 @@
 <template>
-  <form class="client-creation">
+
+  <form
+      v-on:keyup.enter="touch()"
+      class="client-creation">
+
     <h3 class="client-address__title">Создание Клиента</h3>
 
-    <name-input id="lastname" label="Фамилия*"/>
-    <name-input id="firstname" label="Имя*"/>
-    <data-input id="patronymic" label="Отчество"/>
+    <lastname-input
+        ref="lastname-input"
+        id="lastname"
+        label="Фамилия*"/>
 
-    <v-date id="birthday" label="Дата рождения"/>
-    <phone-input id="phone" label="Номер телефона"/>
+    <firstname-input
+        ref="firstname-input"
+        id="firstname"
+        label="Имя*"/>
+
+    <patronymic-input
+        ref="patronymic-input"
+        id="patronymic"
+        label="Отчество"/>
+
+    <date-input
+        ref="date-input"
+        id="birthday"
+        label="Дата рождения*"/>
+
+    <phone-input
+        ref="phone-input"
+        id="phone"
+        label="Номер телефона*"/>
 
     <gender-selection/>
 
-    <client-group id="client" label="Группа клиентов"/>
+    <client-group
+        ref="client-group"
+        id="client"
+        label="Группа клиентов*"/>
 
     <custom-select
         id="doctor"
@@ -28,8 +53,9 @@
       </label>
 
       <button
+          type="button"
           class="client-creation__button"
-          @click="$router.push('address')">
+          @click="touch()">
         Далее
       </button>
     </div>
@@ -37,24 +63,73 @@
 </template>
 
 <script>
-import DataInput from "@/components/DataInput";
-import VDate from "@/components/VDate";
-import PhoneInput from "@/page-1/PhoneInput";
-import GenderSelection from "@/page-1/GenderSelection";
+import PhoneInput from "@/page-1/components/PhoneInput";
+import GenderSelection from "@/page-1/components/GenderSelection";
 import CustomSelect from "@/components/CustomSelect";
-import ClientGroup from "@/page-1/ClientGroup";
-import NameInput from "@/page-1/NameInput";
+import ClientGroup from "@/page-1/components/ClientGroup";
+import FirstnameInput from "@/page-1/components/FirstnameInput";
+import LastnameInput from "@/page-1/components/LastnameInput";
+import PatronymicInput from "@/page-1/components/PatronymicInput";
+import DateInput from "@/components/DateInput";
 
 export default {
   name: "ClientCreation",
+
+  data() {
+    return{
+      a: true,
+      b: true,
+      c: true,
+      d: true,
+      e: true,
+      f: true,
+    }
+  },
+
   components: {
-    NameInput,
+    DateInput,
+    PatronymicInput,
+    LastnameInput,
+    FirstnameInput,
     ClientGroup,
     CustomSelect,
-    DataInput,
-    VDate,
     PhoneInput,
     GenderSelection
+  },
+
+  methods: {
+
+    touch() {
+
+      this.$refs["lastname-input"].$v.$touch()
+      this.$refs["patronymic-input"].$v.$touch()
+      this.$refs["phone-input"].$v.$touch()
+      this.$refs["date-input"].$v.$touch()
+      this.$refs["client-group"].$v.$touch()
+      this.$refs["firstname-input"].$v.$touch()
+
+      this.a =  this.$refs["lastname-input"].$v.$error
+      this.e =  this.$refs["client-group"].$v.$error
+      this.d =  this.$refs["date-input"].$v.$error
+      this.c =  this.$refs["phone-input"].$v.$error
+      this.b =  this.$refs["patronymic-input"].$v.$error
+      this.f =  this.$refs["firstname-input"].$v.$error
+
+      if (this.error === false) this.$router.push('address')
+    },
+
+    // push() {
+    //
+    // }
+  },
+
+  computed: {
+
+    error () {
+      return this.a || this.b || this.c || this.d || this.e
+          ||this.f
+    }
+
   }
 }
 </script>
@@ -86,6 +161,7 @@ export default {
     cursor: pointer;
     height: 30px;
     width: 75px;
+    outline-style: none;
   }
 
   &__button:hover {
