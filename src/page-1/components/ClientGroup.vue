@@ -11,13 +11,11 @@
         class="input-wrapper client-group__wrapper"
         tabindex="0"
         @mouseenter="hovered = true"
-        @mouseleave="hovered = false"
-        @focus="$v.selectedGroup.$reset()"
-        @blur="focused = false; $v.selectedGroup.$touch()">
+        @blur="focused = false">
 
       <div
           class="client-group__selected"
-          @click="focused = !focused">
+          @click="focused = !focused; $v.selectedGroup.$model">
 
         <div
             class="client-group__tag"
@@ -103,6 +101,12 @@ export default {
     }
   },
 
+  watch: {
+    selectedGroup() {
+      this.$v.selectedGroup.$touch()
+    }
+  },
+
   computed: {
 
     selectedGroup() {
@@ -130,11 +134,10 @@ export default {
 <style lang="scss">
 
 .client-group {
-  margin: 0 0 20px;
-  height: 40px;
+  height: var(--height-input);
   position: relative;
   background-color: #ffffff;
-  border-radius: 20px;
+  border-radius: calc(var(--height-input) / 2);
   z-index: 2;
 
   &__wrapper {
@@ -145,7 +148,7 @@ export default {
   }
 
   &__selected {
-    height: 40px;
+    height: var(--height-input);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -154,7 +157,7 @@ export default {
   }
 
   &__label {
-    height: 40px;
+    height: var(--height-input);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -186,7 +189,7 @@ export default {
 
   &__arrow {
     position: absolute;
-    top: 17px;
+    top: calc((var(--height-input) - 2px) / 2 - 2px);
     width: 6px;
     height: 6px;
     right: 15px;
@@ -219,4 +222,5 @@ export default {
     color: red;
   }
 }
+
 </style>

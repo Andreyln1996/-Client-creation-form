@@ -4,7 +4,7 @@
       v-on:keyup.enter="touch()"
       class="client-creation">
 
-    <h3 class="client-address__title">Создание Клиента</h3>
+    <h3 class="client-creation__title">Создание Клиента</h3>
 
     <lastname-input
         ref="lastname-input"
@@ -116,11 +116,7 @@ export default {
       this.f =  this.$refs["firstname-input"].$v.$error
 
       if (this.error === false) this.$router.push('address')
-    },
-
-    // push() {
-    //
-    // }
+    }
   },
 
   computed: {
@@ -137,10 +133,20 @@ export default {
 <style lang="scss">
 
 .client-creation {
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 100%;
+
+  &__title {
+    text-align: center;
+    font-size: 20px;
+    margin: 0;
+  }
 
   &__footer {
-    margin-bottom: 20px;
-    height: 40px;
+    height: var(--height-input);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -169,4 +175,15 @@ export default {
   }
 }
 
+@media (max-width: 768px) {
+
+  .client-creation {
+    justify-content: space-around;
+
+    &__button {
+      height: 40px;
+      width: 95px;
+    }
+  }
+}
 </style>

@@ -8,18 +8,18 @@
       :error="$v.recodingDate.$error">
 
     <input
-        v-model.trim="date"
+        v-model.trim="$v.date.$model"
         :class="{'date-input_focused': notEmpty}"
         class="date-input"
         type="date"
-        @focus="focus(); $v.recodingDate.$reset()"
-        @blur="blur(); $v.recodingDate.$touch()">
+        @focus="focus()"
+        @blur="blur()">
 
     <span
         class="error"
         v-if="
           !$v.recodingDate.required &&
-          $v.recodingDate.$dirty">
+          $v.date.$dirty">
       Поле обязательно для заполнения
     </span>
 
@@ -28,7 +28,7 @@
         v-if="
           (!$v.recodingDate.minValue ||
           !$v.recodingDate.maxValue) &&
-          $v.recodingDate.$dirty">
+          $v.date.$dirty">
       Некорректная дата
     </span>
   </InputWrapper>
@@ -36,7 +36,11 @@
 
 <script>
 import InputWrapper from "@/components/InputWrapper";
-import {maxValue, required, minValue} from 'vuelidate/lib/validators';
+import {
+  maxValue,
+  minValue,
+  required
+} from 'vuelidate/lib/validators';
 
 export default {
   name: "DateInput",
@@ -55,6 +59,7 @@ export default {
   },
 
   validations: {
+    date: {},
     recodingDate: {
       required,
       maxValue: maxValue(new Date()),
@@ -104,6 +109,7 @@ export default {
   cursor: text;
   background-color: #ffffff;
   transition: 0.2s;
+  -webkit-appearance: none;
 
   &_focused {
     color: black;

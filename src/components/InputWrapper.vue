@@ -41,10 +41,9 @@ export default {
 <style lang="scss">
 
 .input-wrapper {
-  width: 450px;
-  height: 40px;
-  margin: 0 0 20px;
-  border-radius: 20px;
+  //min-width: 250px;
+  height: var(--height-input);
+  border-radius: calc(var(--height-input) / 2);
   border: 1px #dadce0 solid;
   position: relative;
   transition: 0.2s;
@@ -61,9 +60,12 @@ export default {
 
   &__label {
     position: absolute;
-    top: 11px;
+    display: flex;
+    align-items: center;
+    top: calc((var(--height-input) - 18px) / 2);
+    bottom: calc((var(--height-input) - 18px) / 2);
     left: 14px;
-    padding: 1px 3px 0 3px;
+    padding: 0 3px 0 4px;
     color: #7d7d7d;
     background: #ffffff;
     user-select: none;
@@ -72,8 +74,9 @@ export default {
 
     &_position_up {
       border-radius: 2px;
-      top: -9px;
-      left: 10px;
+      bottom: calc(var(--height-input) - 4px);
+      left: 11px;
+      top: -10px;
       font-size: 10px;
     }
 

@@ -136,8 +136,7 @@ export default {
 <style lang="scss">
 
 .custom-select {
-  margin: 0 0 20px;
-  height: 40px;
+  height: var(--height-input);
   position: relative;
   z-index: 1;
 
@@ -147,12 +146,12 @@ export default {
     background: #dadce0;
     outline-style: none;
     height: auto;
-    max-height: 120px;
+    max-height: calc(var(--height-input) * 3);
   }
 
   &__arrow {
     position: absolute;
-    top: 17px;
+    top: calc((var(--height-input) - 2px) / 2 - 2px);
     width: 6px;
     height: 6px;
     right: 15px;
@@ -185,7 +184,7 @@ export default {
     transition: inherit;
 
     &_focused {
-      height: 40px;
+      height: var(--height-input);
       opacity: 1;
     }
 

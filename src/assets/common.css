@@ -50,3 +50,13 @@ select {
   font-size: 9px;
   color: red;
 }
+
+:root {
+  --height-input: 40px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --height-input: 50px;
+  }
+}

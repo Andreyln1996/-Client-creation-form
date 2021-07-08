@@ -8,12 +8,12 @@
 
     <input
         v-mask="'+7 (999) 999-99-99'"
-        v-model="text"
+        v-model="$v.text.$model"
         :class="{'phone-input_focused': notEmpty}"
         class="phone-input"
         type="tel"
-        @focus="focus(); $v.text.$reset()"
-        @blur="blur(); $v.text.$touch()">
+        @focus="focus()"
+        @blur="blur()">
     <span
         class="error"
         v-if="!$v.text.required && $v.text.$dirty">
@@ -23,7 +23,7 @@
     <span
         class="error"
         v-if="!$v.text.alpha && $v.text.$dirty">
-      Некорректный номер телефона
+      Укажите телефон польностью
     </span>
 
   </InputWrapper>
