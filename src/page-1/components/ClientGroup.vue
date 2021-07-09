@@ -11,6 +11,7 @@
         class="input-wrapper client-group__wrapper"
         tabindex="0"
         @mouseenter="hovered = true"
+        @mouseleave="hovered = false"
         @blur="focused = false">
 
       <div

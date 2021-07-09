@@ -4,7 +4,9 @@
       v-on:keyup.enter="touch()"
       class="client-creation">
 
-    <h3 class="client-creation__title">Создание Клиента</h3>
+    <h3 class="client-creation__title">
+      Создание Клиента
+    </h3>
 
     <lastname-input
         ref="lastname-input"
@@ -58,6 +60,7 @@
           @click="touch()">
         Далее
       </button>
+
     </div>
   </form>
 </template>
@@ -77,12 +80,12 @@ export default {
 
   data() {
     return{
-      a: true,
-      b: true,
-      c: true,
-      d: true,
-      e: true,
-      f: true,
+      a: Boolean,
+      b: Boolean,
+      c: Boolean,
+      d: Boolean,
+      e: Boolean,
+      f: Boolean,
     }
   },
 
@@ -102,10 +105,8 @@ export default {
     touch() {
 
       this.$refs["lastname-input"].$v.$touch()
-      this.$refs["patronymic-input"].$v.$touch()
       this.$refs["phone-input"].$v.$touch()
       this.$refs["date-input"].$v.$touch()
-      this.$refs["client-group"].$v.$touch()
       this.$refs["firstname-input"].$v.$touch()
 
       this.a =  this.$refs["lastname-input"].$v.$error
@@ -137,7 +138,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  min-height: 100%;
+  height: 605px;
 
   &__title {
     text-align: center;
@@ -179,6 +180,7 @@ export default {
 
   .client-creation {
     justify-content: space-around;
+    height: 800px;
 
     &__button {
       height: 40px;

@@ -1,20 +1,24 @@
-<template
-
-    v-on:keyup.enter="$router.push('/')">
+<template>
 
   <div
       class="client-created"
       v-on:keyup.enter="$router.push('/')">
 
-    <h3> Новый клиент успешно создан </h3>
+    <div class="client-created__container">
 
-    <button
-        type="button"
-        class="client-created__btn"
-        @click="$router.push('/')"
-        >
-      ОК
-    </button>
+      <h3
+          class="client-created__title">
+        Новый клиент успешно создан
+      </h3>
+
+      <button
+          type="button"
+          class="client-created__btn"
+          @click="$router.push('/')">
+        ОК
+      </button>
+
+    </div>
 
   </div>
 </template>
@@ -42,12 +46,26 @@ export default {
 <style lang="scss">
 
 .client-created {
+  min-width: 250px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  width: auto;
   height: 150px;
+
+  &__container {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 20px;
+    margin: 0;
+  }
 
   &__btn {
     cursor: pointer;
@@ -60,10 +78,23 @@ export default {
     background-color: #1a73e8;
   }
 
+
+
+
   &__btn:hover {
     background-color: #1667d2;
   }
 
 }
+@media (max-width: 768px) {
 
+  .client-created {
+    height: 100%;
+
+    &__btn {
+      height: 40px;
+      width: 95px;
+    }
+  }
+}
 </style>

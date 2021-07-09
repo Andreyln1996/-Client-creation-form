@@ -8,11 +8,11 @@
       :error="$v.text.$error">
 
     <input
-        v-model.trim="text"
+        v-model.trim="$v.text.$model"
         class="data-input"
         type="text"
-        @focus="focus(); $v.text.$reset()"
-        @blur="blur(); $v.text.$touch()">
+        @focus="focus()"
+        @blur="blur()">
 
     <span
         class="error"

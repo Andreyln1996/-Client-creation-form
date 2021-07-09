@@ -1,8 +1,8 @@
 <template>
 
   <form
-      class="client-document"
-      v-on:keyup.enter="touch()">
+      v-on:keyup.enter="touch()"
+      class="client-document">
 
     <h3 class="client-document__title">
       Документ Клиента
@@ -17,9 +17,11 @@
           'Вод. удостоверение']"/>
 
     <data-input
-        id="series" label="Серия"/>
+        id="series"
+        label="Серия"/>
 
     <index-input
+        ref="number-input"
         id="number"
         label="Номер"/>
 
@@ -28,16 +30,17 @@
         label="Кем выдан"/>
 
     <date-input
-        ref="data-input"
-        id="dataIssued"
+        ref="dateIssued-input"
+        id="dateIssued"
         label="Дата выдачи*"/>
 
     <div class="client-document__footer">
 
       <button
+          type="button"
           class="client-document__btn
                 client-document__btn_back"
-          @click="$router.push('/address')">
+          @click="$router.push('address')">
         Назад
       </button>
 
@@ -61,18 +64,35 @@ import DateInput from "@/components/DateInput";
 
 export default {
   name: "ClientDocument",
+  data() {
+    return {
+      a: true,
+      b: true,
+    }
+  },
+
   components: {
     DateInput,
     IndexInput,
     CustomSelect,
     DataInput
   },
+
   methods: {
 
     touch() {
-      this.$refs["data-input"].$v.$touch()
-      if (this.$refs["data-input"].$v.$error === false)
-        this.$router.push('message')
+      this.$refs["dateIssued-input"].$v.$touch()
+
+      this.a = this.$refs["dateIssued-input"].$v.$error
+      this.b = this.$refs["number-input"].$v.$error
+
+      if (this.error === false) this.$router.push('message')
+    }
+  },
+  computed: {
+
+    error() {
+      return this.a || this.b
     }
   }
 }
@@ -81,15 +101,20 @@ export default {
 <style lang="scss">
 
 .client-document {
- min-width: 250px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 605px;
 
   &__title {
     text-align: center;
+    font-size: 20px;
+    margin: 0;
   }
 
   &__footer {
-    margin-bottom: 20px;
-    height: 40px;
+    height: var(--height-input);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -102,6 +127,7 @@ export default {
     border-style: none;
     height: 30px;
     width: 75px;
+    outline-style: none;
 
     &_back {
       color: #1a73e8;
@@ -120,6 +146,19 @@ export default {
 
     &_next:hover {
       background-color: #1667d2;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .client-document {
+    justify-content: space-around;
+    height: 800px;
+
+    &__btn {
+      height: 40px;
+      width: 95px;
     }
   }
 }

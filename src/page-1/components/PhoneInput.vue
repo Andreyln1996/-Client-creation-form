@@ -23,7 +23,7 @@
     <span
         class="error"
         v-if="!$v.text.alpha && $v.text.$dirty">
-      Укажите телефон польностью
+      Укажите телефон полностью
     </span>
 
   </InputWrapper>

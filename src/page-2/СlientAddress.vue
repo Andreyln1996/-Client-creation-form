@@ -1,22 +1,25 @@
 <template>
 
     <form
-        class="client-address"
-        v-on:keyup.enter="touch()">
+        v-on:keyup.enter="touch()"
+        class="client-address">
 
       <h3 class="client-address__title">
         Адрес Клиента
       </h3>
 
       <index-input
+          ref="index-input"
           id="index"
           label="Индекс"/>
 
       <address-input
+          ref="country-input"
           id="country"
           label="Страна"/>
 
       <address-input
+          ref="region-input"
           id="region"
           label="Область"/>
 
@@ -26,6 +29,7 @@
           label="Город*"/>
 
       <address-input
+          ref="street-input"
           id="street"
           label="Улица"/>
 
@@ -62,6 +66,16 @@ import CityInput from "@/page-2/components/CityInput";
 
 export default {
   name: "ClientAddress",
+  data() {
+    return{
+      a: Boolean,
+      b: Boolean,
+      c: Boolean,
+      d: Boolean,
+      e: Boolean,
+    }
+  },
+
   components: {
     CityInput,
     AddressInput,
@@ -72,10 +86,25 @@ export default {
   methods: {
 
     touch() {
+
       this.$refs["city-input"].$v.$touch()
-      if (this.$refs["city-input"].$v.$error === false)
-        this.$router.push('document')
+
+      this.a =  this.$refs["index-input"].$v.$error
+      this.e =  this.$refs["country-input"].$v.$error
+      this.d =  this.$refs["region-input"].$v.$error
+      this.c =  this.$refs["city-input"].$v.$error
+      this.b =  this.$refs["street-input"].$v.$error
+
+      if (this.error === false) this.$router.push('document')
     }
+  },
+
+  computed: {
+
+    error () {
+      return this.a || this.b || this.c || this.d || this.e
+    }
+
   }
 }
 </script>
@@ -83,15 +112,20 @@ export default {
 <style lang="scss">
 
 .client-address {
-  width: 250px;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 605px;
 
   &__title {
     text-align: center;
+    font-size: 20px;
+    margin: 0;
   }
 
   &__footer {
-    margin-bottom: 20px;
-    height: 40px;
+    height: var(--height-input);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -124,6 +158,19 @@ export default {
 
     &_next:hover {
       background-color: #1667d2;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  .client-address {
+    justify-content: space-around;
+    height: 800px;
+
+    &__btn {
+      height: 40px;
+      width: 95px;
     }
   }
 }

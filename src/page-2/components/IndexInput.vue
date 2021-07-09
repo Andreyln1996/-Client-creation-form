@@ -4,10 +4,11 @@
       :id="id"
       :label="label"
       :notEmpty="notEmpty"
-      :focused="focused">
+      :focused="focused"
+      :error="$v.text.$error">
 
     <input
-        v-model.trim="text"
+        v-model.trim="$v.text.$model"
         class="data-input"
         type="number"
         maxlength="6"
@@ -15,11 +16,20 @@
           this.value = this.value.slice(0, this.maxLength);"
         @focus="focus()"
         @blur="blur()">
+
+    <span
+        class="error"
+        v-if="!$v.text.minLength && $v.text.$dirty">
+       Поле должено содержать не менее
+      {{$v.text.$params.minLength.min}} цифр
+    </span>
+
   </InputWrapper>
 </template>
 
 <script>
 import InputWrapper from "@/components/InputWrapper";
+import {minLength} from "vuelidate/lib/validators";
 
 export default {
   name: "IndexInput",
@@ -34,6 +44,12 @@ export default {
     return {
       focused: false,
       text: '',
+    }
+  },
+
+  validations: {
+    text: {
+      minLength: minLength(6),
     }
   },
 
